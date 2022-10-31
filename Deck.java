@@ -46,15 +46,7 @@ public class Deck
      */
     public void shuffle() {
         // To be written
-        this.faces();
-        
-        List<Integer> intList = Arrays.asList(faces);
-
-        Collections.shuffle(intList);
-
-        intList.toArray(intArray);
-
-        System.out.println(Arrays.toString(intArray));
+        Collections.shuffle(cards);
     }
 
     /**
