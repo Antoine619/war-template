@@ -1,4 +1,4 @@
-
+ 
 /**
  * War game class
  *
@@ -18,6 +18,8 @@ public class War
         
         
         // ...then run the event loop
+        Card card = new Card();
+        
         this.runEventLoop();
     }
     
@@ -26,7 +28,7 @@ public class War
      * from the War flowchart you created for this game
      */
     public void runEventLoop() {
-
+        
     }
     
     /**
