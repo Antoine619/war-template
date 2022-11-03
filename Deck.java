@@ -71,7 +71,15 @@ public class Deck
      * @returns The top card of the deck (at cards index 0)
      */
     public Card dealCardFromDeck() {
-        // To be written 
+        // To be written
+        Card cardThing;
+        int topCard = 0;
+        if(topCard < cards.size()){
+            cardThing = cards.get(topCard);
+            topCard++;
+            cards.remove(cardThing);
+            return cardThing;
+        }
         return null;
     }
 
@@ -81,6 +89,6 @@ public class Deck
      */
     public void addCardToDeck(Card cardToAdd) {
         // To be written
+        cards.add(cardToAdd);
     }
-
 }

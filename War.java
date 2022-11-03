@@ -18,7 +18,6 @@ public class War
         
         
         // ...then run the event loop
-        Card card = new Card();
         
         this.runEventLoop();
     }
