@@ -1,4 +1,4 @@
-/**
+    /**
  * War game class
  *
  * @author Mr. Jaffe
@@ -44,7 +44,17 @@ public class War
             System.out.println("player one has " + sizeOfOne + " cards.");
             System.out.println("player two has " + sizeOfTwo + " cards.");
             System.out.println("it is currently round: " + round);
+            
+            Card p1 = playerOne.dealCardFromDeck();
+            Card p2 = playerTwo.dealCardFromDeck();
+            
+            System.out.println("Player one first card: " + p1);
+            System.out.println("Player two first card: " + p2);
+            
+            
         }
+        
+        
     }
 
     /**
