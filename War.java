@@ -1,4 +1,4 @@
-        /**
+/**
  * War game class
  *
  * @author Mr. Jaffe
@@ -38,20 +38,20 @@ public class War
             enoughCards = true;
             int sizeOfOne = playerOne.getDeckSize();
             int sizeOfTwo = playerTwo.getDeckSize();
-            
+
             System.out.println("ROUND " + round);
             System.out.println("player one has " + sizeOfOne + " cards.");
             System.out.println("player two has " + sizeOfTwo + " cards.");
-            
+
             System.out.println();
-            
+
             Card p1 = playerOne.dealCardFromDeck();
             Card p2 = playerTwo.dealCardFromDeck();
-            
+
             System.out.println("Player one card: " + p1.getFace() + " of " + p1.getSuit());
             System.out.println("Player two card: " + p2.getFace() + " of " + p2.getSuit());
             System.out.println();
-            
+
             if(p1.getRank() < p2.getRank()){
                 System.out.println("player 2 wins round " + round);
                 playerOne.addCardToDeck(p1);
@@ -62,10 +62,23 @@ public class War
                 playerTwo.addCardToDeck(p2);
                 playerTwo.addCardToDeck(p1);
             }
-            if(round == 300){
-                System.out.println();
-                System.out.println("GAME OVER");
+            else{
+                System.out.println("WAR");
+                while(p1){
+                    if(p1.getRank() < p2.getRank()){
+                        System.out.println("player 2 wins war");
+                        playerOne.addCardToDeck(p1);
+                        playerOne.addCardToDeck(p2);
+                    }
+                    if(p1.getRank() > p2.getRank()){
+                        System.out.println("player 1 wins war");
+                        playerTwo.addCardToDeck(p1);
+                        playerOne.addCardToDeck(p2);
+                    }
+                }   
             }
+
+            System.out.println("GAME OVER");
             System.out.println();
             round++;
         }
