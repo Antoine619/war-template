@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * War game class
  *
@@ -24,6 +27,15 @@ public class War
         // ...then run the event loop
 
         this.runEventLoop(playerOne, playerTwo);
+    }
+
+    public void realWar() {
+        Deck deck = new Deck();
+        deck.initializeNewDeck();
+        deck.shuffle();
+        Deck[] halves = deck.dealDeck();
+        Deck playerOneWar = halves[0];
+        Deck playerTwoWar = halves[1];
     }
 
     /**
@@ -63,8 +75,19 @@ public class War
                 playerTwo.addCardToDeck(p1);
             }
             else{
+                List<Card> deckOne = new ArrayList<Card>();
+                List<Card> deckTwo = new ArrayList<Card>();
+
                 System.out.println("WAR");
-                while(p1){
+                System.out.println();
+
+                deckOne.add(p1);
+                deckTwo.add(p2);
+
+                while(p1.getRank() == p2.getRank()){
+                    System.out.println("Player one card " + p1.getFace() + " of " + p1.getSuit());
+                    System.out.println("Player two card " + p2.getFace() + " of " + p2.getSuit());
+                    System.out.println();
                     if(p1.getRank() < p2.getRank()){
                         System.out.println("player 2 wins war");
                         playerOne.addCardToDeck(p1);
@@ -77,11 +100,13 @@ public class War
                     }
                 }   
             }
-
-            System.out.println("GAME OVER");
-            System.out.println();
             round++;
+            if(round > 300) {
+                break;
+            }
         }
+        System.out.println();
+        System.out.println("GAME OVER :-)");
     }
 
     /**
