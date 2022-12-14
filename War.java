@@ -90,17 +90,36 @@ public class War
                     System.out.println();
                     if(p1.getRank() < p2.getRank()){
                         System.out.println("player 2 wins war");
-                        playerOne.addCardToDeck(p1);
-                        playerOne.addCardToDeck(p2);
+                        for (Card card: deckOne  ) {
+                            playerOne.addCardToDeck(card);
+                        }
+                        for(Card card : deckTwo) {
+                            playerOne.addCardToDeck(card);
+                        }
                     }
                     if(p1.getRank() > p2.getRank()){
                         System.out.println("player 1 wins war");
-                        playerTwo.addCardToDeck(p1);
-                        playerOne.addCardToDeck(p2);
+                        for (Card card: deckOne  ) {
+                            playerTwo.addCardToDeck(card);
+                        }
+                        for(Card card : deckTwo) {
+                            playerTwo.addCardToDeck(card);
+                        }
                     }
                 }   
             }
             round++;
+            System.out.println();
+            if (playerOne.getDeckSize() < 1) {
+                enoughCards = false;
+                System.out.println();
+                System.out.println("player two has no more cards");
+            }
+            if (playerTwo.getDeckSize() < 1) {
+                enoughCards = false;
+                System.out.println();
+                System.out.println("player one has no more cards");
+            }
             if(round > 300) {
                 break;
             }
