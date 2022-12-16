@@ -63,66 +63,96 @@ public class War
             System.out.println("Player one card: " + p1.getFace() + " of " + p1.getSuit());
             System.out.println("Player two card: " + p2.getFace() + " of " + p2.getSuit());
             System.out.println();
+            try{
+                if(p1.getRank() < p2.getRank()){
+                    System.out.println("player 2 wins round " + round);
+                    playerOne.addCardToDeck(p1);
+                    playerOne.addCardToDeck(p2);
+                }
+                if(p1.getRank() > p2.getRank()){
+                    System.out.println("player 1 wins round " + round);
+                    playerTwo.addCardToDeck(p2);
+                    playerTwo.addCardToDeck(p1);
+                }
+                else{
+                    List<Card> deckOne = new ArrayList<Card>();
+                    List<Card> deckTwo = new ArrayList<Card>();
 
-            if(p1.getRank() < p2.getRank()){
-                System.out.println("player 2 wins round " + round);
-                playerOne.addCardToDeck(p1);
-                playerOne.addCardToDeck(p2);
-            }
-            if(p1.getRank() > p2.getRank()){
-                System.out.println("player 1 wins round " + round);
-                playerTwo.addCardToDeck(p2);
-                playerTwo.addCardToDeck(p1);
-            }
-            else{
-                List<Card> deckOne = new ArrayList<Card>();
-                List<Card> deckTwo = new ArrayList<Card>();
+                    deckOne.add(p1);
+                    deckTwo.add(p2);
 
-                System.out.println("WAR");
+                    while(p1.getRank() == p2.getRank()){
+                        System.out.println("WAR");
+                        System.out.println();
+
+                        System.out.println("Player one card " + p1.getFace() + " of " + p1.getSuit());
+                        System.out.println("Player two card " + p2.getFace() + " of " + p2.getSuit());
+                        System.out.println();
+                        for(int i = 0; i < 3; i++){
+                            deckOne.add(playerOne.dealCardFromDeck());
+                            deckTwo.add(playerTwo.dealCardFromDeck());
+                        }
+                        p1 = playerOne.dealCardFromDeck();
+                        p2 = playerTwo.dealCardFromDeck();
+
+                        deckOne.add(p1);
+                        deckTwo.add(p2);
+
+                        System.out.println("Player 1 Card: " + p1.getFace() + " of " + p1.getSuit());
+                        System.out.println("Player 2 Card: " + p2.getFace() + " of " + p2.getSuit());
+                        System.out.println();
+
+                        if(p1.getRank() < p2.getRank()){
+                            System.out.println("player 2 wins the war");
+                            for (Card card: deckOne  ) {
+                                playerOne.addCardToDeck(card);
+                            }
+                            for(Card card : deckTwo) {
+                                playerOne.addCardToDeck(card);
+                            }
+                        }
+                        if(p1.getRank() > p2.getRank()){
+                            System.out.println("player 1 wins the war");
+                            for (Card card: deckOne  ) {
+                                playerTwo.addCardToDeck(card);
+                            }
+                            for(Card card : deckTwo) {
+                                playerTwo.addCardToDeck(card);
+                            }
+                        }
+                    }   
+                }
+                round++;
                 System.out.println();
-
-                deckOne.add(p1);
-                deckTwo.add(p2);
-
-                while(p1.getRank() == p2.getRank()){
-                    System.out.println("Player one card " + p1.getFace() + " of " + p1.getSuit());
-                    System.out.println("Player two card " + p2.getFace() + " of " + p2.getSuit());
-                    System.out.println();
-                    if(p1.getRank() < p2.getRank()){
-                        System.out.println("player 2 wins war");
-                        for (Card card: deckOne  ) {
-                            playerOne.addCardToDeck(card);
-                        }
-                        for(Card card : deckTwo) {
-                            playerOne.addCardToDeck(card);
-                        }
-                    }
-                    if(p1.getRank() > p2.getRank()){
-                        System.out.println("player 1 wins war");
-                        for (Card card: deckOne  ) {
-                            playerTwo.addCardToDeck(card);
-                        }
-                        for(Card card : deckTwo) {
-                            playerTwo.addCardToDeck(card);
-                        }
-                    }
-                }   
             }
-            round++;
-            System.out.println();
-            if (playerOne.getDeckSize() < 1) {
+            catch (Exception e) {
                 enoughCards = false;
+                if (playerOne.getDeckSize() < 4) {
+                    System.out.println("player 1 - insufficient cards - player 2 wins.");
+                }
                 System.out.println();
-                System.out.println("player two has no more cards");
-            }
-            if (playerTwo.getDeckSize() < 1) {
-                enoughCards = false;
-                System.out.println();
-                System.out.println("player one has no more cards");
+                if (playerTwo.getDeckSize() < 4) {
+                    System.out.println("player 2 - insufficient cards - player 1 wins.");
+                }
+                break;
             }
             if(round > 300) {
                 break;
             }
+        }
+        System.out.println("------------------MATCH RESULTS--------------------");
+        System.out.println();
+        System.out.println("player one has " + playerOne.getDeckSize() + (" cards."));
+        System.out.println();
+        System.out.println("player two has " + playerTwo.getDeckSize() + (" cards."));
+        System.out.println();
+        System.out.println("and thus...");
+        System.out.println();
+        if(playerOne.getDeckSize() > playerTwo.getDeckSize()){
+            System.out.println("player one wins!");
+        }
+        if(playerOne.getDeckSize() < playerTwo.getDeckSize()) {
+            System.out.println("player two wins!");
         }
         System.out.println();
         System.out.println("GAME OVER :-)");
